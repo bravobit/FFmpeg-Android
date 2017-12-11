@@ -20,7 +20,7 @@ public class FFmpeg implements FFmpegInterface {
 
     private FFmpeg(FFmpegContextProvider context) {
         this.context = context;
-        Log.setDEBUG(Util.isDebug(this.context.provide()));
+        Log.setDebug(Util.isDebug(this.context.provide()));
     }
 
     public static FFmpeg getInstance(final Context context) {

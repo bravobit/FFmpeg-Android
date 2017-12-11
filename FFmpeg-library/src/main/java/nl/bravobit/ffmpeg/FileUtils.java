@@ -2,19 +2,11 @@ package nl.bravobit.ffmpeg;
 
 import android.content.Context;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Formatter;
 import java.util.Map;
 
 class FileUtils {
-    static final String FFMPEG_FILE_NAME = "ffmpeg.so";
+    private static final String FFMPEG_FILE_NAME = "ffmpeg.so";
 
     static File getFFmpeg(Context context) {
         File libraryFolder = new File(context.getFilesDir().getParent(), "lib/");

@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="bravobit.nl.ffmpegandroid" />
+<manifest package="bravobit.nl.ffmpegandroid" />
