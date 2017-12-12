@@ -1,1 +1,1 @@
-include ':app', ':FFmpeg-library'
+include ':sample', ':FFmpeg-library'
