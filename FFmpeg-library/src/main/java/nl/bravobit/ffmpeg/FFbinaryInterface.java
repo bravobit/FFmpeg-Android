@@ -10,8 +10,8 @@ interface FFbinaryInterface {
     /**
      * Executes a command
      *
-     * @param environmentVars              Environment variables
-     * @param cmd                          command to execute
+     * @param environmentVars                 Environment variables
+     * @param cmd                             command to execute
      * @param ffcommandExecuteResponseHandler {@link FFcommandExecuteResponseHandler}
      * @throws FFmpegCommandAlreadyRunningException throws exception when binary is already running
      */
@@ -20,7 +20,7 @@ interface FFbinaryInterface {
     /**
      * Executes a command
      *
-     * @param cmd                          command to execute
+     * @param cmd                             command to execute
      * @param ffcommandExecuteResponseHandler {@link FFcommandExecuteResponseHandler}
      * @throws FFmpegCommandAlreadyRunningException throws exception when binary is already running
      */
@@ -59,6 +59,7 @@ interface FFbinaryInterface {
      *
      * @param onReady code to run when binary is ready
      * @param timeout when to give up in milliseconds
+     * @return binary observer
      */
     FFbinaryObserver whenFFbinaryIsReady(Runnable onReady, int timeout);
 }
