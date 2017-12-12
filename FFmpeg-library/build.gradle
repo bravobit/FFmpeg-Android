@@ -16,9 +16,6 @@ android {
     }
 
     sourceSets.main {
-        assets.srcDirs = ['assets']
-        //jni.srcDirs = ['jni']
-        jni.srcDirs = [] //disable automatic ndk-build
         jniLibs.srcDirs = ['libs']
     }
 
