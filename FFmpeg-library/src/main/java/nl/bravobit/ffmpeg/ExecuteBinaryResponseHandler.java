@@ -1,6 +1,6 @@
 package nl.bravobit.ffmpeg;
 
-public class ExecuteBinaryResponseHandler implements FFmpegExecuteResponseHandler {
+public class ExecuteBinaryResponseHandler implements FFcommandExecuteResponseHandler {
 
     @Override
     public void onSuccess(String message) {

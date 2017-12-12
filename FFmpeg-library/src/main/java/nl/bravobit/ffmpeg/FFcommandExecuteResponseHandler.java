@@ -1,25 +1,25 @@
 package nl.bravobit.ffmpeg;
 
-public interface FFmpegExecuteResponseHandler extends ResponseHandler {
+public interface FFcommandExecuteResponseHandler extends ResponseHandler {
 
     /**
      * on Success
      *
-     * @param message complete output of the FFmpeg command
+     * @param message complete output of the binary command
      */
     void onSuccess(String message);
 
     /**
      * on Progress
      *
-     * @param message current output of FFmpeg command
+     * @param message current output of binary command
      */
     void onProgress(String message);
 
     /**
      * on Failure
      *
-     * @param message complete output of the FFmpeg command
+     * @param message complete output of the binary command
      */
     void onFailure(String message);
 

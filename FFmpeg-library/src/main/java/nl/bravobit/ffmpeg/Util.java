@@ -59,11 +59,11 @@ class Util {
         Boolean isReadyToProceed();
     }
 
-    static FFmpegObserver observeOnce(final ObservePredicate predicate, final Runnable run, final int timeout) {
+    static FFbinaryObserver observeOnce(final ObservePredicate predicate, final Runnable run, final int timeout) {
         final android.os.Handler observer = new android.os.Handler();
 
 
-        final FFmpegObserver observeAction = new FFmpegObserver() {
+        final FFbinaryObserver observeAction = new FFbinaryObserver() {
             private boolean canceled = false;
             private int timeElapsed = 0;
 

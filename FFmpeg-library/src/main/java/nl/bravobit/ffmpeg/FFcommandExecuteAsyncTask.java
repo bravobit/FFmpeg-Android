@@ -7,17 +7,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.concurrent.TimeoutException;
 
-class FFmpegExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
+class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
 
     private final String[] cmd;
-    private final FFmpegExecuteResponseHandler ffmpegExecuteResponseHandler;
+    private final FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler;
     private final ShellCommand shellCommand;
     private final long timeout;
     private long startTime;
     private Process process;
     private String output = "";
 
-    FFmpegExecuteAsyncTask(String[] cmd, long timeout, FFmpegExecuteResponseHandler ffmpegExecuteResponseHandler) {
+    FFcommandExecuteAsyncTask(String[] cmd, long timeout, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) {
         this.cmd = cmd;
         this.timeout = timeout;
         this.ffmpegExecuteResponseHandler = ffmpegExecuteResponseHandler;
@@ -43,10 +43,10 @@ class FFmpegExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
             checkAndUpdateProcess();
             return CommandResult.getOutputFromProcess(process);
         } catch (TimeoutException e) {
-            Log.e("FFmpeg timed out", e);
+            Log.e("FFmpeg binary timed out", e);
             return new CommandResult(false, e.getMessage());
         } catch (Exception e) {
-            Log.e("Error running FFmpeg", e);
+            Log.e("Error running FFmpeg binary", e);
         } finally {
             Util.destroyProcess(process);
         }
@@ -82,7 +82,7 @@ class FFmpegExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
 
             // Handling timeout
             if (timeout != Long.MAX_VALUE && System.currentTimeMillis() > startTime + timeout) {
-                throw new TimeoutException("FFmpeg timed out");
+                throw new TimeoutException("FFmpeg binary timed out");
             }
 
             try {
