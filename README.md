@@ -30,7 +30,7 @@ FFmpeg in this project was built with the following libraries:
 
 ### Check if FFmpeg is supported
 To check whether FFmpeg is available on your device you can use the following method.
-```
+```java
 if (FFmpeg.getInstance(this).isSupported()) {
   // ffmpeg is supported
 } else {
@@ -70,7 +70,7 @@ try {
 
 ### Check if FFprobe is supported
 To check whether FFprobe is available on your device you can use the following method.
-```
+```java
 if (FFprobe.getInstance(this).isSupported()) {
   // ffprobe is supported
 } else {
