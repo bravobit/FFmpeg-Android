@@ -1,5 +1,6 @@
 # FFmpeg-Android
-FFMpeg/FFprobe compiled for Android
+FFMpeg/FFprobe compiled for Android.
+Execute FFmpeg & FFprobe commands with ease in your Android project.
 
 ## About
 This project is a continued fork of [FFmpeg Android Java](https://github.com/WritingMinds/ffmpeg-android-java) by WritingMinds.
