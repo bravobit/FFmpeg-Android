@@ -9,6 +9,7 @@ This fork fixes the `CANNOT LINK EXECUTABLE ffmpeg: has text relocations` issue 
 Bravobit FFmpeg-Android runs on the following architectures:
 - armv7
 - armv7-neon
+- armv8
 - x86
 - x86_64
 
