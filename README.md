@@ -1,5 +1,6 @@
 # FFmpeg-Android
-FFMpeg/FFprobe compiled for Android
+FFMpeg/FFprobe compiled for Android.
+Execute FFmpeg & FFprobe commands with ease in your Android project.
 
 ## About
 This project is a continued fork of [FFmpeg Android Java](https://github.com/WritingMinds/ffmpeg-android-java) by WritingMinds.
@@ -9,6 +10,7 @@ This fork fixes the `CANNOT LINK EXECUTABLE ffmpeg: has text relocations` issue 
 Bravobit FFmpeg-Android runs on the following architectures:
 - armv7
 - armv7-neon
+- armv8
 - x86
 - x86_64
 
