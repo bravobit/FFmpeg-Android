@@ -1,9 +1,6 @@
 apply plugin: 'com.android.library'
 
 ext {
-    bintrayRepo = 'Android-FFmpeg'
-    bintrayName = 'android-ffmpeg'
-
     publishedGroupId = 'nl.bravobit'
     libraryName = 'Android FFmpeg'
     artifact = 'android-ffmpeg'
@@ -13,7 +10,7 @@ ext {
     siteUrl = 'https://github.com/bravobit/FFmpeg-Android'
     gitUrl = 'https://github.com/bravobit/FFmpeg-Android.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
 
     developerId = 'Bravobit'
     developerName = 'Bravobit'
@@ -31,7 +28,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.2"
     }
 
     compileOptions {
@@ -68,8 +65,6 @@ install {
         pom {
             project {
                 packaging 'aar'
-                groupId publishedGroupId
-                artifactId artifact
 
                 // Add your description here
                 name libraryName
@@ -142,8 +137,8 @@ bintray {
 
     configurations = ['archives']
     pkg {
-        repo = bintrayRepo
-        name = bintrayName
+        repo = "Android-FFmpeg"
+        name = "android-ffmpeg"
         desc = libraryDescription
         websiteUrl = siteUrl
         vcsUrl = gitUrl

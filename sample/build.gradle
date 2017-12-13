@@ -28,5 +28,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.0.2'
 
-    implementation project(':FFmpeg-library')
+    implementation project(':android-ffmpeg')
 }

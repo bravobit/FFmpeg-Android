@@ -1,1 +1,1 @@
-include ':sample', ':FFmpeg-library'
+include ':sample', ':android-ffmpeg'
