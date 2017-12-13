@@ -43,7 +43,7 @@ public class FFmpeg implements FFbinaryInterface {
         }
 
         // get ffmpeg file
-        File ffmpeg = FileUtils.getFFprobe(context.provide());
+        File ffmpeg = FileUtils.getFFmpeg(context.provide());
 
         // check if ffmpeg file exists
         if (!ffmpeg.exists()) {
