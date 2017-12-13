@@ -34,7 +34,7 @@ FFmpeg in this project was built with the following libraries:
 Include the dependency
 ```gradle
 dependencies {
-    implementation 'nl.bravobit:android-ffmpeg:1.0.2'
+    implementation 'nl.bravobit:android-ffmpeg:1.0.3'
 }
 ```
 
@@ -117,3 +117,8 @@ try {
   // Handle if FFprobe is already running
 }
 ```
+
+## Special Thanks To
+- [hiteshsondhi88](https://github.com/hiteshsondhi88)
+- [diegoperini](https://github.com/diegoperini)
+- [ravindu1024](https://github.com/ravindu1024)
