@@ -3,6 +3,7 @@ package nl.bravobit.ffmpeg;
 import android.content.Context;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.Map;
 
@@ -39,6 +40,7 @@ public class FFprobe implements FFbinaryInterface {
     public boolean isSupported() {
         // check if arch is supported
         if (CpuArchHelper.getCpuArch() == CpuArch.NONE) {
+            Log.e("arch not supported");
             return false;
         }
 
@@ -47,6 +49,17 @@ public class FFprobe implements FFbinaryInterface {
 
         // check if ffprobe file exists
         if (!ffprobe.exists()) {
+            Log.e("file does not exist");
+            return false;
+        }
+
+        try {
+            Runtime.getRuntime().exec("chmod -R 777 " + ffprobe.getAbsolutePath()).waitFor();
+        } catch (InterruptedException e) {
+            Log.e("interrupted exception", e);
+            return false;
+        } catch (IOException e) {
+            Log.e("io exception", e);
             return false;
         }
 
@@ -55,9 +68,11 @@ public class FFprobe implements FFbinaryInterface {
             // try to make it executable
             try {
                 if (!ffprobe.setExecutable(true)) {
+                    Log.e("unable to make executable");
                     return false;
                 }
             } catch (SecurityException e) {
+                Log.e("security exception", e);
                 return false;
             }
         }
