@@ -21,6 +21,7 @@ public class ExampleActivity extends AppCompatActivity {
 
         if (FFmpeg.getInstance(this).isSupported()) {
             // ffmpeg is supported
+            versionFFmpeg();
         } else {
             // ffmpeg is not supported
         }
@@ -54,6 +55,7 @@ public class ExampleActivity extends AppCompatActivity {
 
     private void versionFFprobe() {
         try {
+            Log.e("ExampleActivity", "version ffprobe");
             FFprobe.getInstance(this).execute(new String[]{"-version"}, new ExecuteBinaryResponseHandler() {
                 @Override
                 public void onSuccess(String message) {
