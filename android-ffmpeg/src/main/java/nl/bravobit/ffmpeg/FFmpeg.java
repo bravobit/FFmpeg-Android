@@ -12,7 +12,7 @@ import java.util.Map;
 import nl.bravobit.ffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
 
 public class FFmpeg implements FFbinaryInterface {
-    private static final int VERSION = 1; // up this version when you add a new ffmpeg build
+    private static final int VERSION = 2; // up this version when you add a new ffmpeg build
     private static final String KEY_PREF_VERSION = "ffmpeg_version";
 
     private final FFbinaryContextProvider context;

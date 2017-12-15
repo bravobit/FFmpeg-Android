@@ -10,7 +10,7 @@ ext {
     siteUrl = 'https://github.com/bravobit/FFmpeg-Android'
     gitUrl = 'https://github.com/bravobit/FFmpeg-Android.git'
 
-    libraryVersion = '1.0.5'
+    libraryVersion = '1.0.6'
 
     developerId = 'Bravobit'
     developerName = 'Bravobit'
@@ -27,8 +27,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 27
-        versionCode 5
-        versionName "1.0.5"
+        versionCode 6
+        versionName "1.0.6"
     }
 
     compileOptions {
