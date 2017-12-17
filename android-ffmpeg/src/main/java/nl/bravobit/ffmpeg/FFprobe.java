@@ -12,7 +12,7 @@ import java.util.Map;
 import nl.bravobit.ffmpeg.exceptions.FFprobeCommandAlreadyRunningException;
 
 public class FFprobe implements FFbinaryInterface {
-    private static final int VERSION = 3; // up this version when you add a new ffprobe build
+    private static final int VERSION = 5; // up this version when you add a new ffprobe build
     private static final String KEY_PREF_VERSION = "ffprobe_version";
 
     private final FFbinaryContextProvider context;
