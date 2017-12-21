@@ -23,6 +23,7 @@ FFmpeg in this project was built with the following libraries:
 - freetype2
 - libmp3lame
 - libvorbis
+- libvpx
 
 ### Features
 - Uses the latest FFmpeg release `n3.4.1`
@@ -35,7 +36,7 @@ FFmpeg in this project was built with the following libraries:
 Include the dependency
 ```gradle
 dependencies {
-    implementation 'nl.bravobit:android-ffmpeg:1.0.8'
+    implementation 'nl.bravobit:android-ffmpeg:1.0.9'
 }
 ```
 
@@ -122,4 +123,3 @@ try {
 ## Special Thanks To
 - [hiteshsondhi88](https://github.com/hiteshsondhi88)
 - [diegoperini](https://github.com/diegoperini)
-- [ravindu1024](https://github.com/ravindu1024)

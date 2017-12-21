@@ -71,4 +71,33 @@ public class ExampleActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private void ffmpegTest() {
+        try {
+            String[] command = {
+                    "-i",
+                    "input.gif",
+                    "output.webm"
+            };
+
+            FFmpeg.getInstance(this).execute(command, new ExecuteBinaryResponseHandler() {
+                @Override
+                public void onSuccess(String message) {
+                    Log.e("ExampleActivity", message);
+                }
+
+                @Override
+                public void onProgress(String message) {
+                    Log.e("ExampleActivity", message);
+                }
+
+                @Override
+                public void onFailure(String message) {
+                    Log.e("ExampleActivity", message);
+                }
+            });
+        } catch(FFmpegCommandAlreadyRunningException e) {
+            e.printStackTrace();
+        }
+    }
 }
