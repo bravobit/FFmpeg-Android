@@ -24,8 +24,8 @@ public class ExampleActivity extends AppCompatActivity {
 
         if (FFmpeg.getInstance(this).isSupported()) {
             // ffmpeg is supported
-            //versionFFmpeg();
-            ffmpegTestTaskQuit();
+            versionFFmpeg();
+            //ffmpegTestTaskQuit();
         } else {
             // ffmpeg is not supported
         }
@@ -78,12 +78,7 @@ public class ExampleActivity extends AppCompatActivity {
 
     private void ffmpegTestTaskQuit() {
         try {
-            String[] command = {
-                    "-y",
-                    "-i",
-                    "/storage/emulated/0/DCIM/Camera/VID_20171222_104945.mp4",
-                    "/storage/emulated/0/DCIM/Camera/" + System.currentTimeMillis() + ".webm"
-            };
+            String[] command = {"-i", "input.mp4", "output.mov"};
 
             final FFtask task = FFmpeg.getInstance(this).execute(command, new ExecuteBinaryResponseHandler() {
                 @Override
