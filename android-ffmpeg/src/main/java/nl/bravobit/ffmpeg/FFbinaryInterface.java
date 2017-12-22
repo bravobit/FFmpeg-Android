@@ -13,18 +13,20 @@ interface FFbinaryInterface {
      * @param environmentVars                 Environment variables
      * @param cmd                             command to execute
      * @param ffcommandExecuteResponseHandler {@link FFcommandExecuteResponseHandler}
+     * @return the task
      * @throws FFmpegCommandAlreadyRunningException throws exception when binary is already running
      */
-    void execute(Map<String, String> environmentVars, String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler) throws FFcommandAlreadyRunningException;
+    FFtask execute(Map<String, String> environmentVars, String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler) throws FFcommandAlreadyRunningException;
 
     /**
      * Executes a command
      *
      * @param cmd                             command to execute
      * @param ffcommandExecuteResponseHandler {@link FFcommandExecuteResponseHandler}
+     * @return the task
      * @throws FFmpegCommandAlreadyRunningException throws exception when binary is already running
      */
-    void execute(String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler) throws FFcommandAlreadyRunningException;
+    FFtask execute(String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler) throws FFcommandAlreadyRunningException;
 
     /**
      * Checks if FF binary is supported on this device

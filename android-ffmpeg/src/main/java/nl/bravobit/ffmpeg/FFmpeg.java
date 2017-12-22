@@ -111,7 +111,7 @@ public class FFmpeg implements FFbinaryInterface {
     }
 
     @Override
-    public void execute(Map<String, String> environvenmentVars, String[] cmd, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) throws FFmpegCommandAlreadyRunningException {
+    public FFtask execute(Map<String, String> environvenmentVars, String[] cmd, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) throws FFmpegCommandAlreadyRunningException {
         if (ffmpegExecuteAsyncTask != null && !ffmpegExecuteAsyncTask.isProcessCompleted()) {
             throw new FFmpegCommandAlreadyRunningException("FFmpeg command is already running, you are only allowed to run single command at a time");
         }
@@ -120,6 +120,7 @@ public class FFmpeg implements FFbinaryInterface {
             String[] command = concatenate(ffmpegBinary, cmd);
             ffmpegExecuteAsyncTask = new FFcommandExecuteAsyncTask(command, timeout, ffmpegExecuteResponseHandler);
             ffmpegExecuteAsyncTask.execute();
+            return ffmpegExecuteAsyncTask;
         } else {
             throw new IllegalArgumentException("shell command cannot be empty");
         }
@@ -138,8 +139,8 @@ public class FFmpeg implements FFbinaryInterface {
     }
 
     @Override
-    public void execute(String[] cmd, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) throws FFmpegCommandAlreadyRunningException {
-        execute(null, cmd, ffmpegExecuteResponseHandler);
+    public FFtask execute(String[] cmd, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) throws FFmpegCommandAlreadyRunningException {
+        return execute(null, cmd, ffmpegExecuteResponseHandler);
     }
 
     @Override

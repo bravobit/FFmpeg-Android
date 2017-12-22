@@ -5,9 +5,10 @@ import android.os.AsyncTask;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.concurrent.TimeoutException;
 
-class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
+class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> implements FFtask {
 
     private final String[] cmd;
     private final FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler;
@@ -16,6 +17,7 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
     private long startTime;
     private Process process;
     private String output = "";
+    private boolean quitPending;
 
     FFcommandExecuteAsyncTask(String[] cmd, long timeout, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) {
         this.cmd = cmd;
@@ -75,6 +77,7 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
 
     private void checkAndUpdateProcess() throws TimeoutException, InterruptedException {
         while (!Util.isProcessCompleted(process)) {
+
             // checking if process is completed
             if (Util.isProcessCompleted(process)) {
                 return;
@@ -95,6 +98,12 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
                         return;
                     }
 
+                    if (quitPending) {
+                        sendQ();
+                        process = null;
+                        return;
+                    }
+
                     output += line + "\n";
                     publishProgress(line);
                 }
@@ -108,4 +117,19 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> {
         return Util.isProcessCompleted(process);
     }
 
+
+    @Override
+    public void sendQuitSignal() {
+        quitPending = true;
+    }
+
+    private void sendQ() {
+        OutputStream outputStream = process.getOutputStream();
+        try {
+            outputStream.write("q\n".getBytes());
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
