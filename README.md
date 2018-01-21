@@ -24,11 +24,13 @@ FFmpeg in this project was built with the following libraries:
 - libmp3lame
 - libvorbis
 - libvpx
+- libopus
 
 ### Features
 - Uses the latest FFmpeg release `n3.4.1`
 - Uses native CPU capabilities on ARM architectures
 - FFprobe is bundled in this library too
+- Enabled network capabilities
 
 ## Usage
 
@@ -36,7 +38,7 @@ FFmpeg in this project was built with the following libraries:
 Include the dependency
 ```gradle
 dependencies {
-    implementation 'nl.bravobit:android-ffmpeg:1.1.0'
+    implementation 'nl.bravobit:android-ffmpeg:1.1.1'
 }
 ```
 
