@@ -18,13 +18,13 @@ Bravobit FFmpeg-Android runs on the following architectures:
 
 ### FFmpeg build
 FFmpeg in this project was built with the following libraries:
-- x264
-- libpng
-- freetype2
-- libmp3lame
-- libvorbis
-- libvpx
-- libopus
+- x264 `r2851 ba24899`
+- libpng `1.6.21`
+- freetype2 `2.8.1`
+- libmp3lame `3.100`
+- libvorbis `1.3.5`
+- libvpx `v1.6.1-1456-g7d1bf5d`
+- libopus `1.2.1`
 
 ### Features
 - Uses the latest FFmpeg release `n3.4.1`
