@@ -26,7 +26,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.0.2'
 
+    // Android libraries
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+
+    // Misc
+    implementation 'com.jakewharton.timber:timber:4.6.1'
+
+    // FFmpeg project
     implementation project(':android-ffmpeg')
 }

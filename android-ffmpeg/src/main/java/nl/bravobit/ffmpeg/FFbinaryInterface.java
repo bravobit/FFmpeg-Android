@@ -2,9 +2,6 @@ package nl.bravobit.ffmpeg;
 
 import java.util.Map;
 
-import nl.bravobit.ffmpeg.exceptions.FFcommandAlreadyRunningException;
-import nl.bravobit.ffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
-
 interface FFbinaryInterface {
 
     /**
@@ -14,9 +11,8 @@ interface FFbinaryInterface {
      * @param cmd                             command to execute
      * @param ffcommandExecuteResponseHandler {@link FFcommandExecuteResponseHandler}
      * @return the task
-     * @throws FFmpegCommandAlreadyRunningException throws exception when binary is already running
      */
-    FFtask execute(Map<String, String> environmentVars, String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler) throws FFcommandAlreadyRunningException;
+    FFtask execute(Map<String, String> environmentVars, String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler);
 
     /**
      * Executes a command
@@ -24,9 +20,8 @@ interface FFbinaryInterface {
      * @param cmd                             command to execute
      * @param ffcommandExecuteResponseHandler {@link FFcommandExecuteResponseHandler}
      * @return the task
-     * @throws FFmpegCommandAlreadyRunningException throws exception when binary is already running
      */
-    FFtask execute(String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler) throws FFcommandAlreadyRunningException;
+    FFtask execute(String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler);
 
     /**
      * Checks if FF binary is supported on this device
@@ -36,18 +31,20 @@ interface FFbinaryInterface {
     boolean isSupported();
 
     /**
-     * Checks if a command is currently running
+     * Checks if a command with given task is currently running
      *
+     * @param task - the task that you want to check
      * @return true if a command is running
      */
-    boolean isCommandRunning();
+    boolean isCommandRunning(FFcommandExecuteAsyncTask task);
 
     /**
-     * Kill running process
+     * Kill given running process
      *
+     * @param task - the task to kill
      * @return true if process is killed successfully
      */
-    boolean killRunningProcesses();
+    boolean killRunningProcesses(FFcommandExecuteAsyncTask task);
 
     /**
      * Timeout for binary process, should be minimum of 10 seconds
@@ -55,13 +52,4 @@ interface FFbinaryInterface {
      * @param timeout in milliseconds
      */
     void setTimeout(long timeout);
-
-    /**
-     * Wait for ffmpeg to get ready asynchronously
-     *
-     * @param onReady code to run when binary is ready
-     * @param timeout when to give up in milliseconds
-     * @return binary observer
-     */
-    FFbinaryObserver whenFFbinaryIsReady(Runnable onReady, int timeout);
 }
