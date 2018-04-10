@@ -118,3 +118,7 @@ ffprobe.execute(cmd, new ExecuteBinaryResponseHandler() {
 ## Special Thanks To
 - [hiteshsondhi88](https://github.com/hiteshsondhi88)
 - [diegoperini](https://github.com/diegoperini)
+
+## Licensing
+- [Library license](https://github.com/bravobit/FFmpeg-Android/blob/master/LICENSE)
+- [FFmpeg license](https://www.ffmpeg.org/legal.html)
