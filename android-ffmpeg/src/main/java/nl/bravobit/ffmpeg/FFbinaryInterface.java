@@ -36,7 +36,7 @@ interface FFbinaryInterface {
      * @param task - the task that you want to check
      * @return true if a command is running
      */
-    boolean isCommandRunning(FFcommandExecuteAsyncTask task);
+    boolean isCommandRunning(FFtask task);
 
     /**
      * Kill given running process
@@ -44,7 +44,7 @@ interface FFbinaryInterface {
      * @param task - the task to kill
      * @return true if process is killed successfully
      */
-    boolean killRunningProcesses(FFcommandExecuteAsyncTask task);
+    boolean killRunningProcesses(FFtask task);
 
     /**
      * Timeout for binary process, should be minimum of 10 seconds

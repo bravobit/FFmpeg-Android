@@ -1,16 +1,20 @@
 package nl.bravobit.ffmpeg;
 
-import java.io.IOException;
 import java.util.Arrays;
+import java.util.Map;
 
 class ShellCommand {
 
-    Process run(String[] commandString) {
+    Process run(String[] commandString, Map<String, String> environment) {
         Process process = null;
         try {
-            process = Runtime.getRuntime().exec(commandString);
-        } catch (IOException e) {
-            Log.e("Exception while trying to run: " + Arrays.toString(commandString), e);
+            ProcessBuilder processBuilder = new ProcessBuilder(commandString);
+            if (environment != null) {
+                processBuilder.environment().putAll(environment);
+            }
+            process = processBuilder.start();
+        } catch (Throwable t) {
+            Log.e("Exception while trying to run: " + Arrays.toString(commandString), t);
         }
         return process;
     }

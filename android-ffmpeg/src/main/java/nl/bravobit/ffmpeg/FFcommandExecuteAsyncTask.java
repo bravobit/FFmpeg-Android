@@ -6,11 +6,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> implements FFtask {
 
     private final String[] cmd;
+    private Map<String, String> environment;
     private final FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler;
     private final ShellCommand shellCommand;
     private final long timeout;
@@ -19,9 +21,10 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> i
     private String output = "";
     private boolean quitPending;
 
-    FFcommandExecuteAsyncTask(String[] cmd, long timeout, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) {
+    FFcommandExecuteAsyncTask(String[] cmd, Map<String, String> environment, long timeout, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) {
         this.cmd = cmd;
         this.timeout = timeout;
+        this.environment = environment;
         this.ffmpegExecuteResponseHandler = ffmpegExecuteResponseHandler;
         this.shellCommand = new ShellCommand();
     }
@@ -37,7 +40,7 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> i
     @Override
     protected CommandResult doInBackground(Void... params) {
         try {
-            process = shellCommand.run(cmd);
+            process = shellCommand.run(cmd, environment);
             if (process == null) {
                 return CommandResult.getDummyFailureResponse();
             }
@@ -113,10 +116,14 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> i
         }
     }
 
-    boolean isProcessCompleted() {
+    public boolean isProcessCompleted() {
         return Util.isProcessCompleted(process);
     }
 
+    @Override
+    public boolean killRunningProcess() {
+        return Util.killAsync(this);
+    }
 
     @Override
     public void sendQuitSignal() {

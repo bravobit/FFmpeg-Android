@@ -8,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Map;
 
 class FileUtils {
     private static final String FFMPEG_FILE_NAME = "ffmpeg";
@@ -22,28 +21,6 @@ class FileUtils {
     static File getFFprobe(Context context) {
         File folder = context.getFilesDir();
         return new File(folder, FFPROBE_FILE_NAME);
-    }
-
-    static String getFFmpegCommand(Context context, Map<String, String> environmentVars) {
-        String ffCommand = "";
-        if (environmentVars != null) {
-            for (Map.Entry<String, String> var : environmentVars.entrySet()) {
-                ffCommand += var.getKey() + "=" + var.getValue() + " ";
-            }
-        }
-        ffCommand += getFFmpeg(context);
-        return ffCommand;
-    }
-
-    static String getFFprobeCommand(Context context, Map<String, String> environmentVars) {
-        String ffCommand = "";
-        if (environmentVars != null) {
-            for (Map.Entry<String, String> var : environmentVars.entrySet()) {
-                ffCommand += var.getKey() + "=" + var.getValue() + " ";
-            }
-        }
-        ffCommand += getFFprobe(context);
-        return ffCommand;
     }
 
     static boolean inputStreamToFile(InputStream stream, File file) {

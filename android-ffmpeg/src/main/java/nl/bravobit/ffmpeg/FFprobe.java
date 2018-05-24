@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 import java.util.Map;
 
 public class FFprobe implements FFbinaryInterface {
-    private static final int VERSION = 12; // up this version when you add a new ffprobe build
+    private static final int VERSION = 15; // up this version when you add a new ffprobe build
     private static final String KEY_PREF_VERSION = "ffprobe_version";
 
     private final FFbinaryContextProvider context;
@@ -111,9 +111,9 @@ public class FFprobe implements FFbinaryInterface {
     @Override
     public FFtask execute(Map<String, String> environvenmentVars, String[] cmd, FFcommandExecuteResponseHandler ffcommandExecuteResponseHandler) {
         if (cmd.length != 0) {
-            String[] ffprobeBinary = new String[]{FileUtils.getFFprobeCommand(context.provide(), environvenmentVars)};
+            String[] ffprobeBinary = new String[]{FileUtils.getFFprobe(context.provide()).getAbsolutePath()};
             String[] command = concatenate(ffprobeBinary, cmd);
-            FFcommandExecuteAsyncTask task = new FFcommandExecuteAsyncTask(command, timeout, ffcommandExecuteResponseHandler);
+            FFcommandExecuteAsyncTask task = new FFcommandExecuteAsyncTask(command, environvenmentVars, timeout, ffcommandExecuteResponseHandler);
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             return task;
         } else {
@@ -138,14 +138,13 @@ public class FFprobe implements FFbinaryInterface {
         return execute(null, cmd, ffcommandExecuteResponseHandler);
     }
 
-    @Override
-    public boolean isCommandRunning(FFcommandExecuteAsyncTask task) {
+    public boolean isCommandRunning(FFtask task) {
         return task != null && !task.isProcessCompleted();
     }
 
     @Override
-    public boolean killRunningProcesses(FFcommandExecuteAsyncTask task) {
-        return Util.killAsync(task);
+    public boolean killRunningProcesses(FFtask task) {
+        return task != null && task.killRunningProcess();
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 import java.util.Map;
 
 public class FFmpeg implements FFbinaryInterface {
-    private static final int VERSION = 12; // up this version when you add a new ffmpeg build
+    private static final int VERSION = 15; // up this version when you add a new ffmpeg build
     private static final String KEY_PREF_VERSION = "ffmpeg_version";
 
     private final FFbinaryContextProvider context;
@@ -111,9 +111,9 @@ public class FFmpeg implements FFbinaryInterface {
     @Override
     public FFtask execute(Map<String, String> environvenmentVars, String[] cmd, FFcommandExecuteResponseHandler ffmpegExecuteResponseHandler) {
         if (cmd.length != 0) {
-            String[] ffmpegBinary = new String[]{FileUtils.getFFmpegCommand(context.provide(), environvenmentVars)};
+            String[] ffmpegBinary = new String[]{FileUtils.getFFmpeg(context.provide()).getAbsolutePath()};
             String[] command = concatenate(ffmpegBinary, cmd);
-            FFcommandExecuteAsyncTask task = new FFcommandExecuteAsyncTask(command, timeout, ffmpegExecuteResponseHandler);
+            FFcommandExecuteAsyncTask task = new FFcommandExecuteAsyncTask(command, environvenmentVars, timeout, ffmpegExecuteResponseHandler);
             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
             return task;
         } else {
@@ -139,13 +139,13 @@ public class FFmpeg implements FFbinaryInterface {
     }
 
     @Override
-    public boolean isCommandRunning(FFcommandExecuteAsyncTask task) {
+    public boolean isCommandRunning(FFtask task) {
         return task != null && !task.isProcessCompleted();
     }
 
     @Override
-    public boolean killRunningProcesses(FFcommandExecuteAsyncTask task) {
-        return Util.killAsync(task);
+    public boolean killRunningProcesses(FFtask task) {
+        return task != null && task.killRunningProcess();
     }
 
     @Override
