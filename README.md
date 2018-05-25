@@ -25,6 +25,10 @@ FFmpeg in this project was built with the following libraries:
 - libvorbis `1.3.5`
 - libvpx `v1.6.1-1456-g7d1bf5d`
 - libopus `1.2.1`
+- fontconfig `2.11.94`
+- libass `0.14.0`
+- fribidi `0.19.7`
+- expat `2.1.0`
 
 ### Features
 - Uses the latest FFmpeg release `n3.4.1`
@@ -39,7 +43,7 @@ FFmpeg in this project was built with the following libraries:
 Include the dependency
 ```gradle
 dependencies {
-    implementation 'nl.bravobit:android-ffmpeg:1.1.2'
+    implementation 'nl.bravobit:android-ffmpeg:1.1.3'
 }
 ```
 
