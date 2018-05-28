@@ -29,6 +29,7 @@ FFmpeg in this project was built with the following libraries:
 - libass `0.14.0`
 - fribidi `0.19.7`
 - expat `2.1.0`
+- fdk-aac `0.1.6`
 
 ### Features
 - Uses the latest FFmpeg release `n4.0-39-gda39990`
@@ -43,7 +44,7 @@ FFmpeg in this project was built with the following libraries:
 Include the dependency
 ```gradle
 dependencies {
-    implementation 'nl.bravobit:android-ffmpeg:1.1.4'
+    implementation 'nl.bravobit:android-ffmpeg:1.1.5'
 }
 ```
 
