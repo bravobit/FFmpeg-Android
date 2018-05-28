@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 import java.util.Map;
 
 public class FFmpeg implements FFbinaryInterface {
-    private static final int VERSION = 15; // up this version when you add a new ffmpeg build
+    private static final int VERSION = 16; // up this version when you add a new ffmpeg build
     private static final String KEY_PREF_VERSION = "ffmpeg_version";
 
     private final FFbinaryContextProvider context;

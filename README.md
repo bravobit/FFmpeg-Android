@@ -31,7 +31,7 @@ FFmpeg in this project was built with the following libraries:
 - expat `2.1.0`
 
 ### Features
-- Uses the latest FFmpeg release `n3.4.1`
+- Uses the latest FFmpeg release `n4.0-39-gda39990`
 - Uses native CPU capabilities on ARM architectures
 - FFprobe is bundled in this library too
 - Enabled network capabilities
