@@ -139,6 +139,23 @@ public class FFmpeg implements FFbinaryInterface {
     }
 
     @Override
+    public String execute(Map<String, String> environmentVars, String[] cmd) {
+        if (cmd.length != 0) {
+            String[] ffmpegBinary = new String[]{FileUtils.getFFmpeg(context.provide()).getAbsolutePath()};
+            String[] command = concatenate(ffmpegBinary, cmd);
+            FFcommandExecuteSynchronous synchronous = new FFcommandExecuteSynchronous(command, environmentVars, timeout);
+            return synchronous.execute();
+        } else {
+            throw new IllegalArgumentException("shell command cannot be empty");
+        }
+    }
+
+    @Override
+    public String execute(String[] cmd) {
+        return execute(null, cmd);
+    }
+
+    @Override
     public boolean isCommandRunning(FFtask task) {
         return task != null && !task.isProcessCompleted();
     }
