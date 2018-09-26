@@ -21,7 +21,7 @@ class Util {
             String str;
             StringBuilder sb = new StringBuilder();
             while ((str = r.readLine()) != null) {
-                sb.append(str);
+                sb.append(str).append('\n');
             }
             return sb.toString();
         } catch (IOException e) {
