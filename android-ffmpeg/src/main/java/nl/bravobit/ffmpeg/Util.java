@@ -12,7 +12,7 @@ import java.io.InputStreamReader;
 class Util {
 
     static boolean isDebug(Context context) {
-        return (context.getApplicationContext().getApplicationInfo().flags &= ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        return (context.getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
     }
 
     static String convertInputStreamToString(InputStream inputStream) {
