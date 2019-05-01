@@ -84,6 +84,18 @@ ffmpeg.execute(cmd, new ExecuteBinaryResponseHandler() {
 });
 ```
 
+### Stop (or Quit) the FFmpeg process
+If you want to stop the running FFmpeg process, simply call `.sendQuitSignal()` on the `FFtask` that is running:
+
+```java
+FFmpeg ffmpeg = FFmpeg.getInstance(context);
+FFtask ffTask = ffmpeg.execute( ... )
+
+ffTask.sendQuitSignal();
+```
+
+_NOTE: This will result in `onFailure` being called instead of `onSuccess`._
+
 ### Check if FFprobe is supported
 To check whether FFprobe is available on your device you can use the following method.
 ```java
