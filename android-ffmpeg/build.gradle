@@ -10,7 +10,7 @@ ext {
     siteUrl = 'https://github.com/bravobit/FFmpeg-Android'
     gitUrl = 'https://github.com/bravobit/FFmpeg-Android.git'
 
-    libraryVersion = '1.1.5'
+    libraryVersion = '1.1.6'
 
     developerId = 'Bravobit'
     developerName = 'Bravobit'
@@ -22,13 +22,13 @@ ext {
 }
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 16
-        targetSdkVersion 27
-        versionCode 15
-        versionName "1.1.5"
+        targetSdkVersion 28
+        versionCode 16
+        versionName "1.1.6"
     }
 
     compileOptions {
@@ -48,7 +48,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
@@ -98,7 +98,6 @@ version = libraryVersion
 
 if (project.hasProperty("android")) { // Android libraries
     task sourcesJar(type: Jar) {
-        classifier = 'sources'
         from android.sourceSets.main.java.srcDirs
     }
 
@@ -108,13 +107,11 @@ if (project.hasProperty("android")) { // Android libraries
     }
 } else { // Java libraries
     task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = 'sources'
         from sourceSets.main.allSource
     }
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
