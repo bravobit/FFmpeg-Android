@@ -94,6 +94,8 @@ FFtask ffTask = ffmpeg.execute( ... )
 ffTask.sendQuitSignal();
 ```
 
+_NOTE: This will result in `onFailure` being called instead of `onSuccess`._
+
 ### Check if FFprobe is supported
 To check whether FFprobe is available on your device you can use the following method.
 ```java
