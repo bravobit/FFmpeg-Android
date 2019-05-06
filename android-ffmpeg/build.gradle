@@ -10,7 +10,7 @@ ext {
     siteUrl = 'https://github.com/bravobit/FFmpeg-Android'
     gitUrl = 'https://github.com/bravobit/FFmpeg-Android.git'
 
-    libraryVersion = '1.1.6'
+    libraryVersion = '1.1.7'
 
     developerId = 'Bravobit'
     developerName = 'Bravobit'
@@ -27,8 +27,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 16
-        versionName "1.1.6"
+        versionCode 17
+        versionName "1.1.7"
     }
 
     compileOptions {
@@ -96,22 +96,18 @@ apply plugin: 'com.jfrog.bintray'
 
 version = libraryVersion
 
-if (project.hasProperty("android")) { // Android libraries
-    task sourcesJar(type: Jar) {
-        from android.sourceSets.main.java.srcDirs
-    }
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
 
-    task javadoc(type: Javadoc) {
-        source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    }
-} else { // Java libraries
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        from sourceSets.main.allSource
-    }
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
     from javadoc.destinationDir
 }
 
