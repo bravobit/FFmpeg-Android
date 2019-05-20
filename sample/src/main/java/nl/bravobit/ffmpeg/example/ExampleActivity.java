@@ -24,6 +24,7 @@ public class ExampleActivity extends AppCompatActivity {
             // ffmpeg is supported
             versionFFmpeg();
             //ffmpegTestTaskQuit();
+            synchronousVersionFFmpeg();
         } else {
             // ffmpeg is not supported
             Timber.e("ffmpeg not supported!");
@@ -32,6 +33,7 @@ public class ExampleActivity extends AppCompatActivity {
         if (FFprobe.getInstance(this).isSupported()) {
             // ffprobe is supported
             versionFFprobe();
+            synchronousVersionFFprobe();
         } else {
             // ffprobe is not supported
             Timber.e("ffprobe not supported!");
@@ -67,6 +69,16 @@ public class ExampleActivity extends AppCompatActivity {
                 Timber.d(message);
             }
         });
+    }
+
+    private void synchronousVersionFFmpeg() {
+        Timber.d("version ffmpeg synchronous");
+        Timber.d(FFmpeg.getInstance(this).execute(new String[]{"-version"}));
+    }
+
+    private void synchronousVersionFFprobe() {
+        Timber.d("version ffprobe synchronous");
+        Timber.d(FFprobe.getInstance(this).execute(new String[]{"-version"}));
     }
 
     private void ffmpegTestTaskQuit() {
