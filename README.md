@@ -1,5 +1,6 @@
 # FFmpeg-Android
 [ ![Download](https://api.bintray.com/packages/bravobit/Android-FFmpeg/android-ffmpeg/images/download.svg) ](https://bintray.com/bravobit/Android-FFmpeg/android-ffmpeg/_latestVersion)
+[ ![Buy us a beer](https://pay.bravobit.nl/assets/bravopay.svg) ](https://pay.bravobit.nl/)
 
 FFMpeg/FFprobe compiled for Android.
 Execute FFmpeg & FFprobe commands with ease in your Android project.
