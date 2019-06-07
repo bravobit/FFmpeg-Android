@@ -45,7 +45,7 @@ FFmpeg in this project was built with the following libraries:
 Include the dependency
 ```gradle
 dependencies {
-    implementation 'nl.bravobit:android-ffmpeg:1.1.7'
+    implementation 'nl.bravobit:android-ffmpeg:1.1.8'
 }
 ```
 
