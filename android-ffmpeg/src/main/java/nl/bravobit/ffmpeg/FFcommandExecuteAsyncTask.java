@@ -18,6 +18,7 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> i
     private final long timeout;
     private long startTime;
     private Process process;
+    private StringBuilder outputStringBuilder = new StringBuilder();
     private String output = "";
     private boolean quitPending;
 
@@ -39,6 +40,7 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> i
 
     @Override
     protected CommandResult doInBackground(Void... params) {
+        CommandResult ret = CommandResult.getDummyFailureResponse();
         try {
             process = shellCommand.run(cmd, environment);
             if (process == null) {
@@ -46,16 +48,19 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> i
             }
             Log.d("Running publishing updates method");
             checkAndUpdateProcess();
-            return CommandResult.getOutputFromProcess(process);
+            ret = CommandResult.getOutputFromProcess(process);
+            outputStringBuilder.append(ret.output);
         } catch (TimeoutException e) {
             Log.e("FFmpeg binary timed out", e);
-            return new CommandResult(false, e.getMessage());
+            ret = new CommandResult(false, e.getMessage());
+            outputStringBuilder.append(ret.output);
         } catch (Exception e) {
             Log.e("Error running FFmpeg binary", e);
         } finally {
             Util.destroyProcess(process);
         }
-        return CommandResult.getDummyFailureResponse();
+        output = outputStringBuilder.toString();
+        return ret;
     }
 
     @Override
@@ -68,7 +73,6 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> i
     @Override
     protected void onPostExecute(CommandResult commandResult) {
         if (ffmpegExecuteResponseHandler != null) {
-            output += commandResult.output;
             if (commandResult.success) {
                 ffmpegExecuteResponseHandler.onSuccess(output);
             } else {
@@ -107,7 +111,7 @@ class FFcommandExecuteAsyncTask extends AsyncTask<Void, String, CommandResult> i
                         return;
                     }
 
-                    output += line + "\n";
+                    outputStringBuilder.append(line); outputStringBuilder.append("\n");
                     publishProgress(line);
                 }
             } catch (IOException e) {
