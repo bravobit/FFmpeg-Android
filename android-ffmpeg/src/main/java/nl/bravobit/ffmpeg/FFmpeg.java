@@ -1,18 +1,13 @@
 package nl.bravobit.ffmpeg;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.Map;
 
 public class FFmpeg implements FFbinaryInterface {
-    private static final int VERSION = 17; // up this version when you add a new ffmpeg build
-    private static final String KEY_PREF_VERSION = "ffmpeg_version";
 
     private final FFbinaryContextProvider context;
 
@@ -50,57 +45,11 @@ public class FFmpeg implements FFbinaryInterface {
         // get ffmpeg file
         File ffmpeg = FileUtils.getFFmpeg(context.provide());
 
-        SharedPreferences settings = context.provide().getSharedPreferences("ffmpeg_prefs", Context.MODE_PRIVATE);
-        int version = settings.getInt(KEY_PREF_VERSION, 0);
-
-        // check if ffmpeg file exists
-        if (!ffmpeg.exists() || version < VERSION) {
-            String prefix = "arm/";
-            if (cpuArch == CpuArch.x86) {
-                prefix = "x86/";
-            }
-            Log.d("file does not exist, creating it...");
-
-            try {
-                InputStream inputStream = context.provide().getAssets().open(prefix + "ffmpeg");
-                if (!FileUtils.inputStreamToFile(inputStream, ffmpeg)) {
-                    return false;
-                }
-
-                Log.d("successfully wrote ffmpeg file!");
-
-                settings.edit().putInt(KEY_PREF_VERSION, VERSION).apply();
-            } catch (IOException e) {
-                Log.e("error while opening assets", e);
-                return false;
-            }
-        }
-
         // check if ffmpeg can be executed
         if (!ffmpeg.canExecute()) {
             // try to make executable
-            try {
-                try {
-                    Runtime.getRuntime().exec("chmod -R 777 " + ffmpeg.getAbsolutePath()).waitFor();
-                } catch (InterruptedException e) {
-                    Log.e("interrupted exception", e);
-                    return false;
-                } catch (IOException e) {
-                    Log.e("io exception", e);
-                    return false;
-                }
-
-                if (!ffmpeg.canExecute()) {
-                    // our last hope!
-                    if (!ffmpeg.setExecutable(true)) {
-                        Log.e("unable to make executable");
-                        return false;
-                    }
-                }
-            } catch (SecurityException e) {
-                Log.e("security exception", e);
-                return false;
-            }
+            Log.e("ffmpeg cannot execute");
+            return false;
         }
 
         Log.d("ffmpeg is ready!");
