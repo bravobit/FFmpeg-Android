@@ -35,13 +35,6 @@ public class FFprobe implements FFbinaryInterface {
 
     @Override
     public boolean isSupported() {
-        // check if arch is supported
-        CpuArch cpuArch = CpuArchHelper.getCpuArch();
-        if (cpuArch == CpuArch.NONE) {
-            Log.e("arch not supported");
-            return false;
-        }
-
         // get ffprobe file
         File ffprobe = FileUtils.getFFprobe(context.provide());
 
