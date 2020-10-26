@@ -55,9 +55,9 @@ public class FFprobe implements FFbinaryInterface {
 
         // check if ffprobe file exists
         if (!ffprobe.exists() || version < VERSION) {
-            String prefix = "arm/";
+            String prefix = "libs/arm/";
             if (cpuArch == CpuArch.x86) {
-                prefix = "x86/";
+                prefix = "libs/x86/";
             }
             Log.d("file does not exist, creating it...");
 

@@ -10,8 +10,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 class FileUtils {
-    private static final String FFMPEG_FILE_NAME = "ffmpeg";
-    private static final String FFPROBE_FILE_NAME = "ffprobe";
+    private static final String FFMPEG_FILE_NAME = "libffmpeg.so";
+    private static final String FFPROBE_FILE_NAME = "libffprobe.so";
 
     static File getFFmpeg(Context context) {
         File folder = context.getFilesDir();
